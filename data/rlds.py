@@ -230,7 +230,7 @@ def make_dataset_from_rlds(
 
     split = "train" if train else "val"
 
-    dataset = dl.DLataset.from_rlds(builder, split=split, shuffle=shuffle, num_parallel_reads=num_parallel_reads, shuffle_seed=shuffle_seed)
+    dataset = dl.DLataset.from_rlds(builder, split=split, shuffle=shuffle, num_parallel_reads=num_parallel_reads, )#shuffle_seed=shuffle_seed)
 
     dataset = dataset.traj_map(restructure, num_parallel_calls)
     dataset = dataset.traj_map(
