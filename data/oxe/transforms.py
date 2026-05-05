@@ -1004,6 +1004,14 @@ def fastumi_dataset_transform(trajectory: Dict[str, Any]) -> Dict[str, Any]:
 def simpler_env_dataset_transform(trajectory: Dict[str, Any]) -> Dict[str, Any]:
     return trajectory
 
+def rlbench_dataset_transform(trajectory: Dict[str, Any]) -> Dict[str, Any]:
+    #trajectory["action"] is already in good shape
+    trajectory["language_instruction"] = trajectory["task"]
+    trajectory["observation"]["EEF_state"] = trajectory["observation"]["state"][:7]
+    trajectory["observation"]["gripper_state"] = trajectory["observation"]["state"][7:]
+    trajectory["language_instruction"] = trajectory["task"]
+    return trajectory
+
 
 # === Registry ===
 OXE_STANDARDIZATION_TRANSFORMS = {
@@ -1084,4 +1092,6 @@ OXE_STANDARDIZATION_TRANSFORMS = {
     "libero_object_no_noops/1.0.0": libero_dataset_transform,
     "libero_goal_no_noops/1.0.0": libero_dataset_transform,
     "libero_10_no_noops/1.0.0": libero_dataset_transform,
+    ### RLBench dataset transform
+    "rl_bench_builder" : rlbench_dataset_transform
 }

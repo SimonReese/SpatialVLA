@@ -206,6 +206,10 @@ OXE_NAMED_MIXTURES: Dict[str, List[Tuple[str, float]]] = {
         # ("droid/1.0.0", 0.06),                                              # NOTE: remove droid in stage2!
         ("rh20t_rlds/1.0.0", 0.015),
     ],
+
+    "rl_bench_builder" : [
+        ("rl_bench_builder", 1.0)
+    ]
 }
 # fmt: on
 OXE_EXCLUDE_MIXTURE: Dict[str, List[str]] = {
